@@ -16,6 +16,7 @@
             <directory suffix="Test.php">LevelL/Tests</directory>
             <directory suffix="Test.php">LevelM/Tests</directory>
             <directory suffix="Test.php">LevelN/Tests</directory>
+            <directory suffix="Test.php">LevelO/Tests</directory>
         </testsuite>
     </testsuites>
 </phpunit>

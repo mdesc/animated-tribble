@@ -85,6 +85,12 @@ if [ $LEVELN = 0 ]; then
         SCORE=$((SCORE+70));
 fi
 
+./phpunit LevelN;
+LEVELN=$?;
+if [ $LEVELN = 0 ]; then
+        SCORE=$((SCORE+25));
+fi
+
 
 NAME='plop';
 if [ $1 ]; then
