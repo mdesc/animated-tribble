@@ -1,0 +1,16 @@
+{
+    "name": "robinduval/hackathon",
+    "description": "Hackathon divides in all exercices",
+    "authors": [
+        {
+            "name": "Robin Duval",
+            "email": "leyoda+hackathon@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Hackathon\\": ""
+        }
+    }
+}
