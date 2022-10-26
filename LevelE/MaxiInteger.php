@@ -45,7 +45,27 @@ class MaxiInteger
      */
     private function realSum($a, $b)
     {
-        /** @TODO */
+        $a = $a->getValue();
+        $b = $b->getValue();
+        $res = "";
+        $retenue = 0;
+        $lena = strlen((string)$a);
+        $lenb = strlen((string)$b);
+        $bigger = strrev($a);
+        $smaller = strrev($b);
+        if ($lena < $lenb){
+            $bigger = strrev($b);
+            $smaller= strrev($a);
+        }
+        for ($i=0; $i < strlen($bigger); $i++) { 
+            if($i<strlen($smaller)){
+                $tmp = (int) $bigger[$i] + (int) $smaller[$i];
+                $retenue = $tmp / 10;
+                $res = $res . (string) ($tmp%10 + $retenue);
+            }
+            $res = $res .(string) ((int)$bigger[$i] + $retenue);
+            $retenue = 0;
+        }
     }
 
     private function setValue($value)
