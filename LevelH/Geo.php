@@ -16,19 +16,19 @@ class Geo
         $srcCity = $myCities->getCityInfoById($id);
         $closestDistance = PHP_INT_MAX;
         $closestCity = $srcCity;
-        $cosDeg2RadLat1 = cos(deg2rad($srcCity['lat']));
 
+        $rlo1 = deg2rad($srcCity['lat']);
+        $rla1 = deg2rad($srcCity['long']);
         foreach ($cities as $dstCity) {
             if ($dstCity['id'] === $srcCity['id']){
                 continue;
             }
 
             $distance = $this->computeDistance(
-                $srcCity['lat'],
-                $srcCity['long'],
+                $rlo1,
+                $rla1,
                 $dstCity['lat'],
-                $dstCity['long'],
-                $cosDeg2RadLat1
+                $dstCity['long']
             );
 
             if ($closestDistance > $distance) {
@@ -51,19 +51,15 @@ class Geo
      * @return int
      */
 
-    private function computeDistance($lat1, $lng1, $lat2, $lng2, $cosDeg2RadLat1){
+    private function computeDistance($lat1, $lng1, $lat2, $lng2){
 
         $earth_radius = 6378137; // Earth Radius is 6378.137 km
-        $rlo1 = deg2rad($lng1);
-        $rla1 = deg2rad($lat1);
+
         $rlo2 = deg2rad($lng2);
         $rla2 = deg2rad($lat2);
-        $dlo = ($rlo2 - $rlo1) / 2;
-        $dla = ($rla2 - $rla1) / 2;
-        $a =
-            (sin($dla) * sin($dla)) +
-            cos($rla1) * cos($rla2) *
-            (sin($dlo) * sin($dlo));
+        $dlo = ($rlo2 - $lat1) / 2;
+        $dla = ($rla2 - $ling1) / 2;
+        $a = (sin($dla) * sin($dla)) + cos($rla1) * cos($rla2) * (sin($dlo) * sin($dlo));
         $d = 2 * atan2(sqrt($a), sqrt(1 - $a));
 
         return ($earth_radius * $d) / pow(10, 3);
