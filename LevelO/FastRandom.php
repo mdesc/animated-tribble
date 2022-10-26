@@ -21,9 +21,14 @@ class FastRandom
     {
         // @TODO You have to modify this ONE
         // Please don't return the ref :D
-        sleep(1);
-        
-        return $this->generateRandomNumbersLaRef();
+        $res = array();
+
+        for ($i = 1; $i < $this->numberOfInteger + 1; $i++) {
+            array_push($res, $i);
+        }
+
+        shuffle($res);
+        return $res;
     }
 
 
